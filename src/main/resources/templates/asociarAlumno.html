@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragmentos/includes.html"></head>
+<title>Alumnos</title>
+<div th:insert="fragmentos/nav.html"></div>
+<body>
+<div id="body" class="container">
+    <br>
+    <div class="container">
+        <i class="fas fa-user-graduate fa-4x"></i>
+        <p>
+        <h4>Alumnos</h4>
+        Desde esta pantalla podés gerstionar a los Alumnos.
+        Para agregar nuevos alumnos al curso</a>
+        </p>
+    </div>
+    <br>
+    <div class="container" th:if="${alumnos != null and !alumnos.empty}">
+        <table class="table table-striped">
+            <thead class="table-primary">
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Email</th>
+            <th>Teléfono</th>
+            <th></th>
+            </thead>
+            <tbody th:each="alumno : ${alumnos}">
+                <td th:text="${alumno.nombre}">Mostrar Nombre</span></td>
+                <td th:text="${alumno.apellido}">Mostrar Apellido</span></td>
+                <td th:text="${alumno.email}">Mostrar Email</span></td>
+                <td th:text="${alumno.telefono}">Mostrar Teléfono</span></td>
+                <td> <a th:href="@{/cursos/asociarAlumno(idCurso=${curso.idCurso},idAlumno=${alumno.idAlumno})}" <i class="fas fa-user-plus"></i></td>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="alert alert-danger d-flex justify-content-center" th:if="${alumnos == null or alumnos.empty}">
+        La lista de alumnos esta vacía.
+    </div>
+    <br>
+    <div th:insert="fragmentos/footer.html :: footer"></div>
+</div>
+</body>
+</html>

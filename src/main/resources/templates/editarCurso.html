@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragmentos/includes.html"></head>
+<meta charset="UTF-8">
+<title>Datos del Curso</title>
+<div th:insert="fragmentos/nav.html"></div>
+<body>
+<div id="body" class="container">
+    <br>
+    <div class="container">
+        <i class="fas fa-user-graduate fa-4x"></i>
+        <p>
+        <h4>Agregar/Editar Curso</h4>
+        <div class="d-flex justify-content-between">
+            Desde esta pantalla podés agregar o editar los cursos.
+            <a th:href="@{/cursos}"> <i class="fas fa-undo-alt "></i> </a>
+        </div>
+        </p>
+    </div>
+    <br>
+    <form th:action="@{/cursos/guardarCurso}" method="post" th:object="${curso}">
+        <input type="hidden" name="idCurso" th:field="*{idCurso}"/>
+
+        <div class="mb-3">
+            <label for="Nombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="Nombre" aria-describedby="Nombre" name="nombre" th:field="*{nombreCurso}">
+        </div>
+
+        <div class="mb-3">
+            <label for="profesorAsignado" class="form-label">Profesor Asignado</label>
+            <input type="text" class="form-control" name="profesorAsignado" id="profesorAsignado" aria-describedby="profesorAsignado"  th:field="*{profesorAsignado}">
+        </div>
+
+        <div class="d-flex justify-content-center">
+            <input class="btn btn-primary" type="submit" name="guardar" value="Guardar"/>
+        </div>
+        <br>
+    </form>
+    <div th:insert="fragmentos/footer.html :: footer"></div>
+</div>
+</body>
+</html>
